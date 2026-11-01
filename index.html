@@ -1,1 +1,152 @@
-Factory 226
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Factory 226</title>
+<meta name="description" content="Factory 226 builds Scrybert and Celebration of Life Photo Galleries.">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<style>
+  :root {
+    --space: #05060f;
+    --ink: #f2eee6;
+    --muted: #a9a6b8;
+    --gold: #ffb23f;
+    --card: rgba(18, 20, 38, 0.72);
+    --card-line: rgba(255, 255, 255, 0.10);
+  }
+  html, body { min-height: 100%; }
+  body {
+    margin: 0;
+    color: var(--ink);
+    background: var(--space);
+    overflow-x: hidden;
+  }
+  /* Deep space: two soft nebula washes over black. */
+  .sky {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(60vmax 40vmax at 15% 20%, rgba(88, 60, 170, 0.28), transparent 70%),
+      radial-gradient(50vmax 35vmax at 85% 75%, rgba(20, 110, 160, 0.22), transparent 70%),
+      radial-gradient(30vmax 25vmax at 70% 15%, rgba(255, 178, 63, 0.08), transparent 70%),
+      var(--space);
+  }
+  .stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  .stars span {
+    position: absolute; border-radius: 50%; background: #fff;
+    animation: twinkle var(--t, 4s) ease-in-out infinite;
+    animation-delay: var(--d, 0s);
+  }
+  @keyframes twinkle { 0%, 100% { opacity: var(--o, .8); } 50% { opacity: .15; } }
+
+  main { position: relative; z-index: 1; }
+  .brand { width: min(560px, 86vw); color: var(--ink); display: block; margin: 0 auto; }
+  .brand svg { width: 100%; height: auto; display: block; }
+
+  /* Floating cards, each bobbing on its own clock. */
+  .float-card {
+    background: var(--card);
+    border: 1px solid var(--card-line);
+    border-radius: 18px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255,255,255,0.02) inset;
+    animation: bob var(--bob, 6s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+    height: 100%;
+    overflow: hidden;
+    transition: border-color .2s ease;
+  }
+  .float-card:hover { border-color: rgba(255, 178, 63, 0.45); }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0) rotate(var(--tilt, 0deg)); }
+    50% { transform: translateY(-12px) rotate(calc(var(--tilt, 0deg) * -1)); }
+  }
+  .float-card h2 { font-size: 1.35rem; font-weight: 700; letter-spacing: .01em; }
+  .float-card p { color: var(--muted); line-height: 1.55; }
+  .float-card a.go {
+    color: var(--gold); text-decoration: none; font-weight: 600;
+    display: inline-flex; align-items: center; gap: .4rem; min-height: 44px;
+  }
+  .float-card a.go:hover { color: #ffd07f; }
+  .orb { width: 88px; height: 88px; }
+  .frames { width: 88px; height: 88px; }
+  .corn { display: block; width: 100%; height: 100%; min-height: 360px; object-fit: cover; }
+  .card-link { color: inherit; text-decoration: none; display: block; height: 100%; }
+  .credit { color: rgba(169, 166, 184, 0.55); font-size: .75rem; }
+  .credit a { color: inherit; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .float-card, .stars span { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+<div class="stars" id="stars" aria-hidden="true"></div>
+
+<main class="container py-5">
+  <header class="py-4 py-md-5 text-center">
+    <h1 class="visually-hidden">Factory 226</h1>
+    <div class="brand" id="brand" aria-hidden="true"></div>
+  </header>
+
+  <div class="row g-4 g-lg-5 justify-content-center align-items-stretch pb-4">
+    <div class="col-12 col-md-6 col-lg-4">
+      <article class="float-card p-4 p-lg-5 d-flex flex-column" style="--bob: 6.2s; --delay: 0s; --tilt: -0.6deg">
+        <img class="orb mb-4" src="img/scrybert-orb.png" alt="Scrybert logo" width="88" height="88">
+        <h2 class="mb-3">Scrybert</h2>
+        <p>Scrybert records your conversations and turns them into notes. Summaries, to-dos and the people you met land on their own. Your words stay yours.</p>
+        <a class="go mt-auto" href="https://www.scrybert.com/">Visit scrybert.com <span aria-hidden="true">&rarr;</span></a>
+      </article>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4">
+      <article class="float-card p-4 p-lg-5 d-flex flex-column" style="--bob: 7.1s; --delay: -2.4s; --tilt: 0.5deg">
+        <svg class="frames mb-4" viewBox="0 0 88 88" role="img" aria-label="Photo frames">
+          <rect x="10" y="20" width="46" height="40" rx="3" fill="none" stroke="#a9a6b8" stroke-width="2.5" transform="rotate(-8 33 40)"/>
+          <rect x="30" y="26" width="48" height="44" rx="3" fill="#121426" stroke="#ffb23f" stroke-width="2.5"/>
+          <circle cx="44" cy="40" r="5" fill="#ffb23f"/>
+          <path d="M34 64 L48 50 L57 58 L64 52 L74 64 Z" fill="#ffb23f" opacity=".55"/>
+        </svg>
+        <h2 class="mb-3">Celebration of Life Photo Galleries</h2>
+        <p>A place to gather the photos of someone you love. Family and friends add their pictures, and everyone shares one gallery.</p>
+        <a class="go mt-auto" href="https://celebrate.tellingworks.com/">See the galleries <span aria-hidden="true">&rarr;</span></a>
+      </article>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4">
+      <article class="float-card" style="--bob: 6.6s; --delay: -4.1s; --tilt: -0.4deg">
+        <img class="corn" src="img/corn.jpg" alt="Five ears of corn on a black background" width="640" height="853" loading="lazy">
+      </article>
+    </div>
+  </div>
+
+  <footer class="text-center pt-4 pb-2">
+    <p class="credit mb-1">&copy; <span id="yr">2026</span> Factory 226</p>
+    <p class="credit">Corn photo by <a href="https://unsplash.com/@suleymanovae?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Ekaterina Suleymanova</a> on <a href="https://unsplash.com/photos/five-ears-of-corn-on-black-Iblw9XC_Lzc?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></p>
+  </footer>
+</main>
+
+<script>
+  // The wordmark is an SVG file, inlined so it takes the page's colour.
+  fetch('img/factory226-logo.svg').then(r => r.text()).then(t => { document.getElementById('brand').innerHTML = t; })
+    .catch(() => { document.getElementById('brand').innerHTML = '<img src="img/factory226-logo.svg" alt="" style="width:100%">'; });
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  // A sky of stars, scattered fresh on each load.
+  (function () {
+    const box = document.getElementById('stars');
+    const n = Math.round(Math.min(260, (window.innerWidth * window.innerHeight) / 5200));
+    let html = '';
+    for (let i = 0; i < n; i++) {
+      const s = Math.random() < 0.9 ? 1 + Math.random() : 2 + Math.random() * 1.2;
+      html += '<span style="left:' + (Math.random() * 100).toFixed(2) + '%;top:' + (Math.random() * 100).toFixed(2) +
+        '%;width:' + s.toFixed(1) + 'px;height:' + s.toFixed(1) + 'px;--o:' + (0.35 + Math.random() * 0.6).toFixed(2) +
+        ';--t:' + (3 + Math.random() * 5).toFixed(1) + 's;--d:-' + (Math.random() * 6).toFixed(1) + 's"></span>';
+    }
+    box.innerHTML = html;
+  })();
+</script>
+</body>
+</html>
